@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biblemaxxing — Read the whole Bible. Without finding more time.</title>
+<meta name="description" content="Biblemaxxing locks your most-tempting apps behind a short Bible passage. Read at the door, unlock, and finish the entire Bible — Genesis to Revelation. Lock in. Read. Grow. Become more.">
+<meta property="og:title" content="Biblemaxxing — Bible App Lock">
+<meta property="og:description" content="Every unlock draws you closer to God. Read the whole Bible without finding more time.">
+<meta property="og:image" content="assets/GodRays.jpg">
+<style>
+  :root {
+    --bg: #0e0e10;
+    --card: #1b1b1e;
+    --ink: #f2efe6;
+    --muted: #9a9383;
+    --gold: #d9ab52;
+    --gold-dim: rgba(217, 171, 82, 0.35);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .serif { font-family: "New York", ui-serif, Georgia, "Times New Roman", serif; }
+  a { color: var(--gold); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 0;
+  }
+  .mark { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; letter-spacing: -0.3px; }
+  .mark .bm-bible { color: var(--ink); }
+  .mark .bm-max { color: var(--gold); }
+  .crown { width: 22px; height: 22px; fill: var(--gold); }
+  nav .links { display: flex; gap: 22px; font-size: 14px; color: var(--muted); }
+
+  header.hero {
+    position: relative;
+    text-align: center;
+    padding: 90px 24px 110px;
+    background:
+      linear-gradient(rgba(14,14,16,0.55), rgba(14,14,16,0.88) 70%, var(--bg)),
+      url("assets/GodRays.jpg") center 30% / cover no-repeat;
+    border-bottom: 1px solid rgba(242,239,230,0.08);
+  }
+  .hero .crown-big { width: 34px; height: 34px; fill: var(--gold); margin-bottom: 14px; }
+  .wordmark { font-size: clamp(38px, 7vw, 62px); font-weight: 900; letter-spacing: -1px; }
+  .wordmark .bm-max { color: var(--gold); }
+  .creed-line {
+    margin-top: 10px; font-size: 12px; letter-spacing: 3px; color: var(--muted);
+    text-transform: uppercase; font-weight: 600;
+  }
+  .hero h1 {
+    margin: 44px auto 16px; max-width: 640px;
+    font-size: clamp(30px, 5.4vw, 48px); line-height: 1.15; font-weight: 700;
+  }
+  .hero p.sub { max-width: 560px; margin: 0 auto; color: var(--muted); font-size: 18px; }
+  .cta {
+    display: inline-block; margin-top: 34px;
+    background: linear-gradient(180deg, #e6bd6b, #c9973f);
+    color: #17130a; font-weight: 800; letter-spacing: 1.5px; font-size: 14px;
+    padding: 16px 34px; border-radius: 14px;
+  }
+  .cta:hover { text-decoration: none; filter: brightness(1.06); }
+  .cta-note { display: block; margin-top: 12px; font-size: 13px; color: var(--muted); }
+
+  section { padding: 72px 0; }
+  section h2 {
+    text-align: center; font-size: 13px; letter-spacing: 3px; color: var(--gold);
+    text-transform: uppercase; font-weight: 700; margin-bottom: 40px;
+  }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+  .card {
+    background: var(--card); border: 1px solid rgba(242,239,230,0.08);
+    border-radius: 18px; padding: 26px;
+  }
+  .card .num { color: var(--gold); font-weight: 800; font-size: 13px; letter-spacing: 2px; }
+  .card h3 { margin: 10px 0 8px; font-size: 19px; }
+  .card p { color: var(--muted); font-size: 15px; }
+
+  .creed-banner {
+    text-align: center; padding: 56px 24px;
+    border-top: 1px solid rgba(242,239,230,0.08);
+    border-bottom: 1px solid rgba(242,239,230,0.08);
+    background:
+      linear-gradient(rgba(14,14,16,0.82), rgba(14,14,16,0.82)),
+      url("assets/DarkSunburst.jpg") center / cover no-repeat;
+  }
+  .creed-banner .three { color: var(--gold); font-weight: 800; letter-spacing: 3px; font-size: 15px; }
+  .creed-banner .becoming { margin-top: 8px; font-weight: 700; letter-spacing: 2px; font-size: clamp(16px, 3vw, 22px); }
+
+  .screens { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; }
+  .screens img {
+    width: 300px; max-width: 82vw; border-radius: 34px;
+    border: 1px solid rgba(242,239,230,0.14);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  }
+
+  ul.features { list-style: none; max-width: 640px; margin: 0 auto; display: grid; gap: 14px; }
+  ul.features li { padding-left: 30px; position: relative; color: var(--muted); font-size: 16px; }
+  ul.features li::before { content: "✦"; position: absolute; left: 4px; color: var(--gold); }
+  ul.features li strong { color: var(--ink); }
+
+  .grace {
+    max-width: 620px; margin: 0 auto; text-align: center;
+  }
+  .grace blockquote { font-size: 20px; font-style: italic; color: var(--ink); }
+  .grace cite { display: block; margin-top: 10px; color: var(--gold); font-style: normal; font-size: 13px; letter-spacing: 2px; }
+  .grace p { color: var(--muted); margin-top: 18px; font-size: 15px; }
+
+  footer {
+    border-top: 1px solid rgba(242,239,230,0.08);
+    padding: 40px 0 60px; color: var(--muted); font-size: 14px; text-align: center;
+  }
+  footer .links { margin-bottom: 12px; display: flex; gap: 24px; justify-content: center; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <span class="mark">
+      <svg class="crown" viewBox="0 0 24 24"><path d="M3 8l4 4 5-6 5 6 4-4v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8z"/></svg>
+      <span><span class="bm-bible">bible</span><span class="bm-max">maxxing</span></span>
+    </span>
+    <span class="links">
+      <a href="#how">How it works</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="#support">Support</a>
+    </span>
+  </nav>
+</div>
+
+<header class="hero">
+  <svg class="crown-big" viewBox="0 0 24 24"><path d="M3 8l4 4 5-6 5 6 4-4v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8z"/></svg>
+  <div class="wordmark"><span class="bm-bible">bible</span><span class="bm-max">maxxing</span><span class="bm-max">✦</span></div>
+  <div class="creed-line">Lock in. Read. Grow. Become more.</div>
+  <h1 class="serif">Read the whole Bible.<br>Without finding more time.</h1>
+  <p class="sub">The average person unlocks their phone 96 times a day. Biblemaxxing puts a short passage of Scripture between you and your most-tempting apps — so every unlock draws you closer to God.</p>
+  <a class="cta" href="#support">COMING SOON — APP STORE</a>
+  <span class="cta-note">In private beta now on TestFlight.</span>
+</header>
+
+<div class="wrap">
+  <section id="how">
+    <h2>How it works</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="num">01 — LOCK</div>
+        <h3 class="serif">Your apps get a doorpost</h3>
+        <p>Choose the apps that pull at you. Open one, and a short passage of Scripture stands at the door — powered by Apple's Screen Time, entirely on your device.</p>
+      </div>
+      <div class="card">
+        <div class="num">02 — READ</div>
+        <h3 class="serif">Read, then enter</h3>
+        <p>One small passage — short enough to truly sit with. Tap "I've read it," and you're in. Your apps stay open for a window you choose.</p>
+      </div>
+      <div class="card">
+        <div class="num">03 — BECOME</div>
+        <h3 class="serif">Every unlock adds up</h3>
+        <p>A daily portion paces you through all 66 books — 73 with the Catholic canon — with streaks, milestones, and a finish date with your name on it.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="creed-banner">
+  <div class="three">DISCIPLINE. DEVOTION. DESTINY.</div>
+  <div class="becoming">YOU'RE BECOMING WHO GOD CALLED YOU TO BE.</div>
+</div>
+
+<div class="wrap">
+  <section>
+    <h2>The app</h2>
+    <div class="screens">
+      <img src="assets/screen-today.png" alt="Biblemaxxing Today screen — daily portion, next verse, and reading plan progress">
+      <img src="assets/screen-reader.png" alt="Biblemaxxing Reader — Scripture with the creed card and mark read button">
+    </div>
+  </section>
+
+  <section>
+    <h2>Built different</h2>
+    <ul class="features">
+      <li><strong>The whole Bible, on your unlocks.</strong> Reading plans from Genesis-to-Revelation to chronological to the Great Story — plus Gospels-first on-ramps and focus plans.</li>
+      <li><strong>Catholic canon included.</strong> Douay-Rheims with all 73 books, alongside KJV and World English Bible. All offline.</li>
+      <li><strong>A daily portion that bends, never breaks.</strong> Miss a day and tomorrow asks a little more — capped, always. No guilt mechanics. Ever.</li>
+      <li><strong>Lock intensity you choose.</strong> Gentle, Committed (first unlock waits for your reading), or Strict (apps stay locked until today's portion is done).</li>
+      <li><strong>Milestones worth keeping.</strong> Finish books, testaments, the whole Bible — and earn a certificate worth framing.</li>
+      <li><strong>Radically private.</strong> No account. No server. No analytics. Your reading stays between you and God.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="grace">
+      <h2>Maxxing outside. Grace inside.</h2>
+      <blockquote class="serif">"His mercies never come to an end; they are new every morning."</blockquote>
+      <cite>LAMENTATIONS 3:22–23</cite>
+      <p>Miss a day and Biblemaxxing doesn't shame you — it recalculates, speaks a word of mercy, and opens the door again. Discipline is the skin. Grace is the engine.</p>
+    </div>
+  </section>
+
+  <section id="support">
+    <h2>Support</h2>
+    <div class="grace">
+      <p>Questions, feedback, or beta access — email <a href="mailto:chesbo@gmail.com">chesbo@gmail.com</a> and we'll get back to you fast.</p>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="#support">Support</a>
+  </div>
+  © 2026 REFINE JOURNAL LLC · Biblemaxxing™ · Scripture texts are public domain (WEB, KJV, Douay-Rheims)
+</footer>
+
+</body>
+</html>
